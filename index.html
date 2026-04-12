@@ -9,41 +9,62 @@
         :root { --pink: #ff3f6c; --dark: #282c3f; --blue: #00d2ff; --bg-gray: #f5f5f6; }
         body { font-family: 'Montserrat', sans-serif; margin: 0; padding-top: 80px; background: white; color: var(--dark); overflow-x: hidden; }
         
+        /* NAVIGATION */
         nav { position: fixed; top: 0; width: 100%; height: 80px; background: white; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); z-index: 1000; box-sizing: border-box; }
         .logo { font-size: 1.8rem; font-weight: 800; color: var(--pink); letter-spacing: -1px; cursor: pointer; }
         .search-container { flex-grow: 1; margin: 0 40px; max-width: 500px; position: relative; }
         #mainSearch { width: 100%; padding: 12px 20px 12px 40px; border-radius: 8px; border: 1px solid #eee; background: var(--bg-gray); outline: none; font-family: 'Montserrat'; }
         .nav-icons { display: flex; gap: 25px; align-items: center; font-size: 0.7rem; font-weight: 700; cursor: pointer; }
 
+        /* CATEGORY BAR */
         .places-bar { background: white; display: flex; justify-content: center; gap: 15px; padding: 15px 0; border-bottom: 1px solid #eee; position: sticky; top: 80px; z-index: 999; }
         .place-btn { padding: 8px 18px; border-radius: 20px; border: 1px solid #ddd; background: white; font-weight: 700; cursor: pointer; font-size: 0.7rem; text-transform: uppercase; }
         .place-btn.active { background: var(--pink); color: white; border-color: var(--pink); }
 
-        .hero-ad { width: 100%; height: 60vh; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1920&auto=format&fit=crop'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
-        .ad-box { background: rgba(40, 44, 63, 0.7); backdrop-filter: blur(15px); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); max-width: 550px; }
-        .ad-box h1 { font-size: 3rem; margin: 0; font-weight: 800; text-transform: uppercase; }
+        /* FASHION CARNIVAL HERO */
+        .hero-ad { 
+            width: 100%; height: 65vh; 
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1920&auto=format&fit=crop'); 
+            background-size: cover; background-position: center; 
+            display: flex; align-items: center; justify-content: center; color: white; text-align: center; 
+        }
+        .ad-box { 
+            background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); 
+            padding: 40px; border-radius: 20px; border: 5px solid var(--pink); color: var(--dark); 
+        }
+        .ad-box h1 { font-size: 3rem; margin: 0; font-weight: 900; color: #d50032; }
+        .ad-box p { font-size: 1.5rem; font-weight: 700; margin: 10px 0; }
 
+        /* PRODUCTS */
         .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; padding: 40px 5%; max-width: 1400px; margin: 0 auto; }
         .card { border-radius: 12px; overflow: hidden; border: 1px solid #eee; transition: 0.3s; position: relative; background: white; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .card img { width: 100%; height: 320px; object-fit: cover; }
-        .wish-icon { position: absolute; top: 15px; right: 15px; background: white; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #ccc; }
+        
+        .wish-icon { position: absolute; top: 15px; right: 15px; background: white; border-radius: 50%; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #ccc; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .wish-icon.active { color: var(--pink); }
+
         .card-info { padding: 15px; text-align: center; }
         .price { font-size: 1.2rem; color: var(--pink); font-weight: 800; margin: 8px 0; }
         .buy-btn { background: var(--dark); color: white; border: none; padding: 12px; width: 100%; border-radius: 6px; font-weight: 700; cursor: pointer; text-transform: uppercase; }
+        
+        /* ADMIN TOOLS */
+        .admin-del-btn { display: none; background: #ff0000; color: white; border: none; padding: 5px 10px; border-radius: 4px; font-size: 0.7rem; margin-bottom: 10px; cursor: pointer; font-weight: 700; width: 100%; }
 
+        /* MODALS */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; }
         .modal-content { background: white; padding: 30px; border-radius: 20px; width: 90%; max-width: 450px; }
         .modal-content input, .modal-content select { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
-        .admin-gear { position: fixed; bottom: 20px; left: 20px; opacity: 0.1; cursor: pointer; font-size: 1.2rem; }
+
+        .admin-gear { position: fixed; bottom: 20px; left: 20px; opacity: 0.1; cursor: pointer; font-size: 1.2rem; z-index: 3000; }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo" onclick="filterPlace('All')">ChorBazaar</div>
+    <div class="logo" onclick="location.reload()">ChorBazaar</div>
     <div class="search-container">
-        <input type="text" id="mainSearch" placeholder="Search brands or items..." onkeyup="runSearch()">
+        <input type="text" id="mainSearch" placeholder="Search brands, gadgets, fashion..." onkeyup="runSearch()">
     </div>
     <div class="nav-icons">
         <div onclick="openM('wishM')">❤️ WISHLIST</div>
@@ -60,67 +81,80 @@
 
 <div class="hero-ad">
     <div class="ad-box">
-        <p style="color: var(--blue); font-weight: 800; letter-spacing: 2px; margin:0;">GRAND OPENING</p>
-        <h1>CHORBAZAAR LUXE</h1>
-        <p>Your curated selection of everything premium.</p>
-        <button class="buy-btn" style="width: auto; padding: 15px 40px;" onclick="document.getElementById('productGrid').scrollIntoView({behavior:'smooth'})">Explore Mall</button>
+        <p style="color:var(--pink); letter-spacing:2px;">APR 1-12</p>
+        <h1>FASHION CARNIVAL</h1>
+        <p>50-80% OFF</p>
+        <button class="buy-btn" style="width: auto; padding: 12px 40px;" onclick="document.getElementById('productGrid').scrollIntoView({behavior:'smooth'})">SHOP NOW</button>
     </div>
 </div>
 
 <div class="container" id="productGrid">
-    <p id="emptyMsg" style="grid-column: 1/-1; text-align:center; padding: 50px; opacity:0.5;">Welcome! We are currently stocking our shelves. Check back soon!</p>
+    <p style="grid-column: 1/-1; text-align:center; padding: 50px; opacity:0.5;">Stocking the mall... Check back soon!</p>
 </div>
 
 <div id="adminM" class="modal">
     <div class="modal-content">
-        <h3>Add Product (Admin Only)</h3>
+        <h3>Add Product (Host Only)</h3>
         <input type="text" id="pName" placeholder="Product Name">
-        <input type="text" id="pPrice" placeholder="Price">
+        <input type="text" id="pPrice" placeholder="Price (INR)">
         <select id="pPlace">
             <option value="Fashion">Fashion</option>
             <option value="Tech">Tech</option>
             <option value="Home">Home</option>
         </select>
         <input type="text" id="pImg" placeholder="Image URL">
-        <input type="text" id="pLink" placeholder="Purchase Link">
-        <button class="buy-btn" onclick="saveProduct()">Upload to Mall</button>
+        <input type="text" id="pLink" placeholder="Affiliate/Buy Link">
+        <button class="buy-btn" onclick="saveProduct()">List Item</button>
         <button onclick="closeM('adminM')" style="background:none; border:none; width:100%; margin-top:10px; color:gray; cursor:pointer;">Cancel</button>
     </div>
 </div>
 
-<div id="wishM" class="modal"><div class="modal-content"><h3>Wishlist ❤️</h3><div id="wishItems"></div><button class="buy-btn" onclick="closeM('wishM')">Close</button></div></div>
+<div id="wishM" class="modal"><div class="modal-content"><h3>Your Favorites ❤️</h3><div id="wishItems"></div><button class="buy-btn" onclick="closeM('wishM')">Close</button></div></div>
 <div id="loginM" class="modal"><div class="modal-content"><h3>Sign In</h3><input type="email" placeholder="Email"><input type="password" placeholder="Password"><button class="buy-btn" onclick="closeM('loginM')">Login</button></div></div>
+
 <div class="admin-gear" onclick="checkAdmin()">⚙️</div>
 
 <script>
-    // --- STARTING WITH ZERO PRODUCTS ---
-    let products = JSON.parse(localStorage.getItem('cb_v9_data')) || [];
+    let products = JSON.parse(localStorage.getItem('cb_v10_data')) || [];
     let wishlist = JSON.parse(localStorage.getItem('cb_wishlist')) || [];
     let currentFilter = 'All';
+    let isAdmin = false;
 
     function render(data = products) {
         const grid = document.getElementById('productGrid');
         let filtered = data.filter(p => currentFilter === 'All' || p.place === currentFilter);
         
         if (filtered.length === 0) {
-            grid.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding: 50px; opacity:0.5;">No products found in this section.</p>`;
+            grid.innerHTML = `<p style="grid-column: 1/-1; text-align:center; padding: 50px; opacity:0.5;">No items found in this section.</p>`;
             return;
         }
 
-        grid.innerHTML = filtered.map(p => {
+        grid.innerHTML = filtered.map((p, index) => {
             const isWished = wishlist.some(w => w.name === p.name);
             return `
             <div class="card">
                 <div class="wish-icon ${isWished ? 'active' : ''}" onclick="toggleWish('${p.name}')">❤️</div>
-                <img src="${p.img}" onerror="this.src='https://via.placeholder.com/400x500?text=Image+Missing'">
+                <img src="${p.img}" onerror="this.src='https://via.placeholder.com/400x500?text=ChorBazaar+Item'">
                 <div class="card-info">
                     <span style="font-size:0.6rem; font-weight:800; color:var(--pink);">${p.place.toUpperCase()}</span>
-                    <h4>${p.name}</h4>
+                    <h4 style="margin:5px 0;">${p.name}</h4>
                     <div class="price">₹${parseInt(p.price).toLocaleString()}</div>
+                    
+                    <button class="admin-del-btn" style="display:${isAdmin ? 'block' : 'none'}" onclick="removeProduct(${index})">DELETE ITEM 🗑️</button>
+                    
                     <button class="buy-btn" onclick="window.open('${p.link}', '_blank')">View Deal</button>
                 </div>
             </div>
         `}).join('');
+    }
+
+    // REMOVE FUNCTION
+    window.removeProduct = function(index) {
+        if(confirm("Permanently remove this item from the mall?")) {
+            products.splice(index, 1);
+            localStorage.setItem('cb_v10_data', JSON.stringify(products));
+            render();
+        }
     }
 
     window.toggleWish = function(name) {
@@ -133,7 +167,7 @@
 
     window.runSearch = function() {
         const q = document.getElementById('mainSearch').value.toLowerCase();
-        render(products.filter(p => p.name.toLowerCase().includes(q)));
+        render(products.filter(p => p.name.toLowerCase().includes(q) || p.place.toLowerCase().includes(q)));
     }
 
     window.filterPlace = function(place, btn) {
@@ -145,7 +179,15 @@
 
     function openM(id) { document.getElementById(id).style.display = 'flex'; if(id==='wishM') updateWishModal(); }
     function closeM(id) { document.getElementById(id).style.display = 'none'; }
-    function checkAdmin() { if(prompt("Admin Key:") === "admin123") openM('adminM'); }
+
+    // ADMIN CHECK
+    window.checkAdmin = function() {
+        if(prompt("Enter Host Password:") === "admin123") {
+            isAdmin = true;
+            openM('adminM');
+            render(); // Refresh to show delete buttons
+        }
+    }
 
     function saveProduct() {
         const name = document.getElementById('pName').value;
@@ -155,14 +197,14 @@
         const link = document.getElementById('pLink').value;
         if(name && price) {
             products.push({name, price, place, img, link});
-            localStorage.setItem('cb_v9_data', JSON.stringify(products));
+            localStorage.setItem('cb_v10_data', JSON.stringify(products));
             render(); closeM('adminM');
         }
     }
 
     function updateWishModal() {
         const cont = document.getElementById('wishItems');
-        cont.innerHTML = wishlist.length === 0 ? "No favorites yet!" : wishlist.map(w => `<p>${w.name} - ₹${w.price}</p>`).join('');
+        cont.innerHTML = wishlist.length === 0 ? "Your wishlist is empty." : wishlist.map(w => `<p style="border-bottom:1px solid #eee; padding:5px;">${w.name} - ₹${w.price}</p>`).join('');
     }
 
     render();
