@@ -7,12 +7,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root { --pink: #ff3f6c; --dark: #282c3f; --bg-gray: #f5f5f6; }
-        body { font-family: 'Montserrat', sans-serif; margin: 0; padding-top: 80px; background:#333333 ; color: var(--dark); overflow-x: hidden; }
+        body { font-family: 'Montserrat', sans-serif; margin: 0; padding-top: 80px; background: white; color: var(--dark); overflow-x: hidden; }
         
-        /* NAVIGATION & AI SEARCH BAR */
+        /* NAVIGATION & SEARCH BAR */
         nav { position: fixed; top: 0; width: 100%; height: 80px; background: white; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); z-index: 1000; box-sizing: border-box; }
-        .logo { font-size: 1.8rem; font-weight: 800; color: var(--pink); letter-spacing: -1px; cursor: pointer; }
         
+        .logo-container { display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; }
+        .nav-logo-img { height: 45px; width: auto; object-fit: contain; }
+        .logo-text { font-size: 1.4rem; font-weight: 800; color: var(--dark); letter-spacing: -1px; }
+        .logo-text span { color: var(--pink); }
+
         .search-container { flex-grow: 1; margin: 0 40px; max-width: 500px; position: relative; }
         #aiSearch { width: 100%; padding: 12px 20px; border-radius: 8px; border: 1px solid #ddd; background: var(--bg-gray); outline: none; font-family: 'Montserrat'; transition: 0.3s; }
         #aiSearch:focus { border-color: var(--pink); background: white; box-shadow: 0 0 10px rgba(255, 63, 108, 0.1); }
@@ -39,121 +43,28 @@
         .buy-btn { background: var(--dark); color: white; border: none; padding: 12px; width: 100%; border-radius: 6px; font-weight: 700; cursor: pointer; text-transform: uppercase; }
         .buy-btn:hover { background: #000; }
 
-        @media (max-width: 600px) {
+        /* MOBILE FIX */
+        @media (max-width: 650px) {
             nav { height: auto; padding: 10px 5%; flex-direction: column; }
-            .search-container { margin: 10px 0; max-width: 100%; width: 100%; }
-            body { padding-top: 140px; }
+            .search-container { margin: 10px 0; width: 100%; }
+            body { padding-top: 150px; }
+            .logo-text { font-size: 1.1rem; }
+            .nav-logo-img { height: 35px; }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo" onclick="location.reload()">ChorBazaar AI</div>
+    <div class="logo-container" onclick="location.reload()">
+        <img src="Chorbazaar AI logo design.png" alt="ChorBazaar AI Logo" class="nav-logo-img">
+        <div class="logo-text">Chor<span>Bazaar</span> <small style="background:var(--pink); color:white; font-size:0.6rem; padding:2px 5px; border-radius:4px;">AI</small></div>
+    </div>
     <div class="search-container">
-        <input type="text" id="aiSearch" placeholder="Narrow AI: Search 'Tech', 'Mobile', or products..." onkeyup="runAiSearch()">
+        <input type="text" id="aiSearch" placeholder="Ask AI: Try 'Mobile', 'Fashion', or product names..." onkeyup="runAiSearch()">
     </div>
 </nav>
 
 <div class="hero-ad">
     <div class="ad-box">
-        <p style="color:var(--pink); font-weight:800; letter-spacing:2px;">INTELLIGENT SELECTIONS</p>
-        <h1>LUXE MALL</h1>
-        <p>Direct Deals • AI Powered</p>
-    </div>
-</div>
-
-<div class="container" id="product-container">
-    <p style="grid-column: 1/-1; text-align:center; padding: 50px; opacity:0.5;">Establishing AI Neural Link...</p>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-    // 1. DATABASE CONNECTION
-    const _supabase = supabase.createClient(
-        'https://nmwxwfswxeidccbntoxg.supabase.co', 
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5td3h3ZnN3eGVpZGNjYm50b3hnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5OTYzMDAsImV4cCI6MjA5MTU3MjMwMH0.0P27CU9Nm1qxUQaoC4dVkdb8CX1sXRIYl6jhuDMnH_0'
-    );
-
-    let masterProductList = [];
-
-    // 2. NARROW AI LOGIC: AUTOMATIC CATEGORIZATION
-    function getAiCategory(name) {
-        if (!name) return 'Luxe Item ✨';
-        const n = name.toLowerCase();
-        if (n.includes('iphone') || n.includes('phone') || n.includes('samsung') || n.includes('poco')) return 'Mobile 📱';
-        if (n.includes('watch') || n.includes('smart') || n.includes('buds') || n.includes('airpod')) return 'Gadgets 🎧';
-        if (n.includes('shirt') || n.includes('shoe') || n.includes('jean') || n.includes('fashion')) return 'Fashion 👕';
-        if (n.includes('laptop') || n.includes('macbook') || n.includes('tab') || n.includes('ipad')) return 'Computing 💻';
-        return 'Premium Selection ✨';
-    }
-
-    // 3. FETCH DATA
-    async function fetchInventory() {
-        const { data, error } = await _supabase.from('products').select('*');
-        
-        if (error) {
-            console.error('AI Link Failed:', error);
-            document.getElementById('product-container').innerHTML = '<p style="text-align:center;">Database connection error.</p>';
-            return;
-        }
-
-        masterProductList = data;
-        renderDisplay(masterProductList);
-    }
-
-    // 4. RENDER UI
-    function renderDisplay(list) {
-        const container = document.getElementById('product-container');
-        if (!list || list.length === 0) {
-            container.innerHTML = '<p style="grid-column: 1/-1; text-align:center;">AI search found no matches.</p>';
-            return;
-        }
-
-        container.innerHTML = ''; 
-        list.forEach(p => {
-            const aiCategory = getAiCategory(p.name);
-            
-            // Link Formatting Logic
-            let rawLink = p.link || '#';
-            let finalLink = (rawLink !== '#' && !rawLink.startsWith('http')) ? 'https://' + rawLink : rawLink;
-
-            container.innerHTML += `
-                <div class="card">
-                    <img src="${p.image_url}" onerror="this.src='https://via.placeholder.com/400x500?text=Scan+Failed'">
-                    <div class="card-info">
-                        <div>
-                            <span class="ai-tag">AI: ${aiCategory}</span>
-                            <h4 style="margin:5px 0;">${p.name}</h4>
-                            <div class="price">₹${Number(p.price).toLocaleString()}</div>
-                        </div>
-                        <button class="buy-btn" onclick="window.open('${finalLink}', '_blank')">
-                            View Deal
-                        </button>
-                    </div>
-                </div>
-            `;
-        });
-    }
-
-    // 5. NARROW AI SMART SEARCH
-    function runAiSearch() {
-        const query = document.getElementById('aiSearch').value.toLowerCase();
-        
-        const filtered = masterProductList.filter(p => {
-            const category = getAiCategory(p.name).toLowerCase();
-            const name = p.name ? p.name.toLowerCase() : "";
-            // Logic: Search name OR search the AI-generated category
-            return name.includes(query) || category.includes(query);
-        });
-
-        renderDisplay(filtered);
-    }
-
-    // Run AI scan on page load
-    fetchInventory();
-</script>
-
-</body>
-</html>
+        <p style="color:var(--pink); font
