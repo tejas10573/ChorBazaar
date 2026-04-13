@@ -3,132 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChorBazaar | Luxe Mall</title>
+    <title>ChorBazaar | AI Luxe Mall</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root { --pink: #ff3f6c; --dark: #282c3f; --bg-gray: #f5f5f6; }
         body { font-family: 'Montserrat', sans-serif; margin: 0; padding-top: 80px; background: white; color: var(--dark); overflow-x: hidden; }
         
-        /* NAVIGATION */
+        /* NAVIGATION & AI SEARCH BAR */
         nav { position: fixed; top: 0; width: 100%; height: 80px; background: white; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); z-index: 1000; box-sizing: border-box; }
         .logo { font-size: 1.8rem; font-weight: 800; color: var(--pink); letter-spacing: -1px; cursor: pointer; }
         
+        .search-container { flex-grow: 1; margin: 0 40px; max-width: 500px; position: relative; }
+        #aiSearch { width: 100%; padding: 12px 20px; border-radius: 8px; border: 1px solid #ddd; background: var(--bg-gray); outline: none; font-family: 'Montserrat'; transition: 0.3s; }
+        #aiSearch:focus { border-color: var(--pink); background: white; box-shadow: 0 0 10px rgba(255, 63, 108, 0.1); }
+
         /* HERO SECTION */
         .hero-ad { 
-            width: 100%; height: 50vh; 
+            width: 100%; height: 40vh; 
             background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1920&auto=format&fit=crop'); 
             background-size: cover; background-position: center; 
             display: flex; align-items: center; justify-content: center; color: white; text-align: center; 
         }
         .ad-box { background: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 15px; border: 4px solid var(--pink); color: var(--dark); }
-        .ad-box h1 { font-size: 2.5rem; margin: 0; font-weight: 900; color: #d50032; }
+        .ad-box h1 { font-size: 2.2rem; margin: 0; font-weight: 900; color: #d50032; }
 
         /* PRODUCT GRID */
         .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; padding: 40px 5%; max-width: 1400px; margin: 0 auto; }
         .card { border-radius: 12px; overflow: hidden; border: 1px solid #eee; transition: 0.3s; background: white; display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 320px; object-fit: cover; background: #f9f9f9; }
+        .card img { width: 100%; height: 320px; object-fit: cover; background: #f9f9f9; display: block; }
         
         .card-info { padding: 15px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .ai-tag { font-size: 0.6rem; font-weight: 800; color: var(--pink); background: #fff0f3; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 8px; text-transform: uppercase; }
         .price { font-size: 1.2rem; color: var(--pink); font-weight: 800; margin: 8px 0; }
         .buy-btn { background: var(--dark); color: white; border: none; padding: 12px; width: 100%; border-radius: 6px; font-weight: 700; cursor: pointer; text-transform: uppercase; }
         .buy-btn:hover { background: #000; }
+
+        @media (max-width: 600px) {
+            nav { height: auto; padding: 10px 5%; flex-direction: column; }
+            .search-container { margin: 10px 0; max-width: 100%; width: 100%; }
+            body { padding-top: 140px; }
+        }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo" onclick="location.reload()">ChorBazaar</div>
+    <div class="logo" onclick="location.reload()">ChorBazaar AI</div>
+    <div class="search-container">
+        <input type="text" id="aiSearch" placeholder="Narrow AI: Search 'Tech', 'Mobile', or products..." onkeyup="runAiSearch()">
+    </div>
 </nav>
 
 <div class="hero-ad">
     <div class="ad-box">
-        <p style="color:var(--pink); font-weight:800; letter-spacing:2px;">GLOBAL SELECTIONS</p>
+        <p style="color:var(--pink); font-weight:800; letter-spacing:2px;">INTELLIGENT SELECTIONS</p>
         <h1>LUXE MALL</h1>
-        <p>Direct Deals from Top Brands</p>
+        <p>Direct Deals • AI Powered</p>
     </div>
 </div>
 
 <div class="container" id="product-container">
-    <p style="grid-column: 1/-1; text-align:center; padding: 50px; opacity:0.5;">Loading Global Inventory...</p>
+    <p style="grid-column: 1/-1; text-align:center; padding: 50px; opacity:0.5;">Establishing AI Neural Link...</p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-    globalProducts.forEach(p => {
-    // TRIGGER THE NARROW AI LOGIC
-    const aiCategory = getAiCategory(p.name);
-
-    container.innerHTML += `
-        <div class="card">
-            <img src="${p.image_url}" onerror="this.src='https://via.placeholder.com/400x500'">
-            <div class="card-info">
-                <span style="font-size:0.6rem; font-weight:800; color:var(--pink); background:#fff0f3; padding:2px 8px; border-radius:10px;">
-                    ${aiCategory}
-                </span>
-                
-                <h4 style="margin:8px 0;">${p.name}</h4>
-                <div class="price">₹${Number(p.price).toLocaleString()}</div>
-                
-                <button class="buy-btn" onclick="window.open('${p.link}', '_blank')">
-                    View Deal
-                </button>
-            </div>
-        </div>
-    `;
-});
-    // 2. SUPABASE CONNECTION
+    // 1. DATABASE CONNECTION
     const _supabase = supabase.createClient(
         'https://nmwxwfswxeidccbntoxg.supabase.co', 
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5td3h3ZnN3eGVpZGNjYm50b3hnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5OTYzMDAsImV4cCI6MjA5MTU3MjMwMH0.0P27CU9Nm1qxUQaoC4dVkdb8CX1sXRIYl6jhuDMnH_0'
     );
 
-    // 3. AUTO FETCH & RENDER
-    async function displayProducts() {
-        // Fetch data from your 'products' table
-        const { data: globalProducts, error } = await _supabase
-            .from('products')
-            .select('*');
+    let masterProductList = [];
 
+    // 2. NARROW AI LOGIC: AUTOMATIC CATEGORIZATION
+    function getAiCategory(name) {
+        if (!name) return 'Luxe Item ✨';
+        const n = name.toLowerCase();
+        if (n.includes('iphone') || n.includes('phone') || n.includes('samsung') || n.includes('poco')) return 'Mobile 📱';
+        if (n.includes('watch') || n.includes('smart') || n.includes('buds') || n.includes('airpod')) return 'Gadgets 🎧';
+        if (n.includes('shirt') || n.includes('shoe') || n.includes('jean') || n.includes('fashion')) return 'Fashion 👕';
+        if (n.includes('laptop') || n.includes('macbook') || n.includes('tab') || n.includes('ipad')) return 'Computing 💻';
+        return 'Premium Selection ✨';
+    }
+
+    // 3. FETCH DATA
+    async function fetchInventory() {
+        const { data, error } = await _supabase.from('products').select('*');
+        
         if (error) {
-            console.error('Error fetching data:', error);
+            console.error('AI Link Failed:', error);
+            document.getElementById('product-container').innerHTML = '<p style="text-align:center;">Database connection error.</p>';
             return;
         }
 
-        const container = document.getElementById('product-container');
-        
-        if (globalProducts && globalProducts.length > 0) {
-            container.innerHTML = ''; // Clear loading message
-            
-            globalProducts.forEach(p => {
-                // Ensure the affiliate link is valid
-                let rawLink = p.link || '#';
-                let finalLink = (rawLink !== '#' && !rawLink.startsWith('http')) ? 'https://' + rawLink : rawLink;
-
-                container.innerHTML += `
-                    <div class="card">
-                        <img src="${p.image_url}" onerror="this.src='https://via.placeholder.com/400x500?text=Image+Not+Found'">
-                        <div class="card-info">
-                            <div>
-                                <span style="font-size:0.6rem; font-weight:800; color:var(--pink);">GLOBAL DEAL</span>
-                                <h4 style="margin:5px 0;">${p.name}</h4>
-                                <div class="price">₹${Number(p.price).toLocaleString()}</div>
-                            </div>
-                            <button class="buy-btn" onclick="window.open('${finalLink}', '_blank')">
-                                View Deal
-                            </button>
-                        </div>
-                    </div>
-                `;
-            });
-        } else {
-            container.innerHTML = '<p style="grid-column: 1/-1; text-align:center;">Mall is empty. Add products in Supabase!</p>';
-        }
+        masterProductList = data;
+        renderDisplay(masterProductList);
     }
 
-    // Run on page load
-    displayProducts();
+    // 4. RENDER UI
+    function renderDisplay(list) {
+        const container = document.getElementById('product-container');
+        if (!list || list.length === 0) {
+            container.innerHTML = '<p style="grid-column: 1/-1; text-align:center;">AI search found no matches.</p>';
+            return;
+        }
+
+        container.innerHTML = ''; 
+        list.forEach(p => {
+            const aiCategory = getAiCategory(p.name);
+            
+            // Link Formatting Logic
+            let rawLink = p.link || '#';
+            let finalLink = (rawLink !== '#' && !rawLink.startsWith('http')) ? 'https://' + rawLink : rawLink;
+
+            container.innerHTML += `
+                <div class="card">
+                    <img src="${p.image_url}" onerror="this.src='https://via.placeholder.com/400x500?text=Scan+Failed'">
+                    <div class="card-info">
+                        <div>
+                            <span class="ai-tag">AI: ${aiCategory}</span>
+                            <h4 style="margin:5px 0;">${p.name}</h4>
+                            <div class="price">₹${Number(p.price).toLocaleString()}</div>
+                        </div>
+                        <button class="buy-btn" onclick="window.open('${finalLink}', '_blank')">
+                            View Deal
+                        </button>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    // 5. NARROW AI SMART SEARCH
+    function runAiSearch() {
+        const query = document.getElementById('aiSearch').value.toLowerCase();
+        
+        const filtered = masterProductList.filter(p => {
+            const category = getAiCategory(p.name).toLowerCase();
+            const name = p.name ? p.name.toLowerCase() : "";
+            // Logic: Search name OR search the AI-generated category
+            return name.includes(query) || category.includes(query);
+        });
+
+        renderDisplay(filtered);
+    }
+
+    // Run AI scan on page load
+    fetchInventory();
 </script>
 
 </body>
