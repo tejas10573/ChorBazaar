@@ -6,89 +6,71 @@
     <title>ChorBazaar | Luxe Mall</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --pink: #ff3f6c; --dark: #282c3f; --blue: #00d2ff; --bg-gray: #f5f5f6; }
+        :root { --pink: #ff3f6c; --dark: #282c3f; --bg-gray: #f5f5f6; }
         body { font-family: 'Montserrat', sans-serif; margin: 0; padding-top: 80px; background: white; color: var(--dark); overflow-x: hidden; }
         
+        /* NAVIGATION */
         nav { position: fixed; top: 0; width: 100%; height: 80px; background: white; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); z-index: 1000; box-sizing: border-box; }
         .logo { font-size: 1.8rem; font-weight: 800; color: var(--pink); letter-spacing: -1px; cursor: pointer; }
-        .search-container { flex-grow: 1; margin: 0 40px; max-width: 500px; position: relative; }
-        #mainSearch { width: 100%; padding: 12px 20px 12px 40px; border-radius: 8px; border: 1px solid #eee; background: var(--bg-gray); outline: none; font-family: 'Montserrat'; }
-        .nav-icons { display: flex; gap: 25px; align-items: center; font-size: 0.7rem; font-weight: 700; cursor: pointer; }
-
-        .places-bar { background: white; display: flex; justify-content: center; gap: 15px; padding: 15px 0; border-bottom: 1px solid #eee; position: sticky; top: 80px; z-index: 999; }
-        .place-btn { padding: 8px 18px; border-radius: 20px; border: 1px solid #ddd; background: white; font-weight: 700; cursor: pointer; font-size: 0.7rem; text-transform: uppercase; }
-        .place-btn.active { background: var(--pink); color: white; border-color: var(--pink); }
-
+        
+        /* HERO SECTION */
         .hero-ad { 
-            width: 100%; height: 65vh; 
-            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1920&auto=format&fit=crop'); 
+            width: 100%; height: 50vh; 
+            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1920&auto=format&fit=crop'); 
             background-size: cover; background-position: center; 
             display: flex; align-items: center; justify-content: center; color: white; text-align: center; 
         }
-        .ad-box { 
-            background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); 
-            padding: 40px; border-radius: 20px; border: 5px solid var(--pink); color: var(--dark); 
-        }
-        .ad-box h1 { font-size: 3rem; margin: 0; font-weight: 900; color: #d50032; }
+        .ad-box { background: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 15px; border: 4px solid var(--pink); color: var(--dark); }
+        .ad-box h1 { font-size: 2.5rem; margin: 0; font-weight: 900; color: #d50032; }
 
+        /* PRODUCT GRID */
         .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; padding: 40px 5%; max-width: 1400px; margin: 0 auto; }
-        .card { border-radius: 12px; overflow: hidden; border: 1px solid #eee; transition: 0.3s; position: relative; background: white; }
-        .card img { width: 100%; height: 320px; object-fit: cover; }
-        .card-info { padding: 15px; text-align: center; }
+        .card { border-radius: 12px; overflow: hidden; border: 1px solid #eee; transition: 0.3s; background: white; display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .card img { width: 100%; height: 320px; object-fit: cover; background: #f9f9f9; }
+        
+        .card-info { padding: 15px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .price { font-size: 1.2rem; color: var(--pink); font-weight: 800; margin: 8px 0; }
         .buy-btn { background: var(--dark); color: white; border: none; padding: 12px; width: 100%; border-radius: 6px; font-weight: 700; cursor: pointer; text-transform: uppercase; }
+        .buy-btn:hover { background: #000; }
     </style>
 </head>
 <body>
 
 <nav>
     <div class="logo" onclick="location.reload()">ChorBazaar</div>
-    <div class="search-container">
-        <input type="text" id="mainSearch" placeholder="Search brands, gadgets, fashion...">
-    </div>
-    <div class="nav-icons">
-        <div>❤️ WISHLIST</div>
-        <div>👤 LOGIN</div>
-    </div>
 </nav>
-
-<div class="places-bar">
-    <button class="place-btn active">All</button>
-    <button class="place-btn">Fashion</button>
-    <button class="place-btn">Tech</button>
-    <button class="place-btn">Home</button>
-</div>
 
 <div class="hero-ad">
     <div class="ad-box">
-        <p style="color:var(--pink); letter-spacing:2px;">APR 1-12</p>
-        <h1>FASHION CARNIVAL</h1>
-        <p>50-80% OFF</p>
-        <button class="buy-btn" style="width: auto; padding: 12px 40px;">SHOP NOW</button>
+        <p style="color:var(--pink); font-weight:800; letter-spacing:2px;">GLOBAL SELECTIONS</p>
+        <h1>LUXE MALL</h1>
+        <p>Direct Deals from Top Brands</p>
     </div>
 </div>
 
 <div class="container" id="product-container">
-    <p style="grid-column: 1/-1; text-align:center; padding: 50px; opacity:0.5;">Stocking the mall... Check back soon!</p>
+    <p style="grid-column: 1/-1; text-align:center; padding: 50px; opacity:0.5;">Loading Global Inventory...</p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-    // 2. CONNECTION (FIXED URL)
+    // 2. SUPABASE CONNECTION
     const _supabase = supabase.createClient(
         'https://nmwxwfswxeidccbntoxg.supabase.co', 
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5td3h3ZnN3eGVpZGNjYm50b3hnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5OTYzMDAsImV4cCI6MjA5MTU3MjMwMH0.0P27CU9Nm1qxUQaoC4dVkdb8CX1sXRIYl6jhuDMnH_0'
     );
 
-    // 3. AUTO FETCH FUNCTION
+    // 3. AUTO FETCH & RENDER
     async function displayProducts() {
+        // Fetch data from your 'products' table
         const { data: globalProducts, error } = await _supabase
             .from('products')
             .select('*');
 
         if (error) {
-            console.error('Supabase Error:', error);
+            console.error('Error fetching data:', error);
             return;
         }
 
@@ -98,22 +80,32 @@
             container.innerHTML = ''; // Clear loading message
             
             globalProducts.forEach(p => {
+                // Ensure the affiliate link is valid
+                let rawLink = p.link || '#';
+                let finalLink = (rawLink !== '#' && !rawLink.startsWith('http')) ? 'https://' + rawLink : rawLink;
+
                 container.innerHTML += `
                     <div class="card">
-                        <img src="${p.image_url}" onerror="this.src='https://via.placeholder.com/400x500?text=ChorBazaar+Item'">
+                        <img src="${p.image_url}" onerror="this.src='https://via.placeholder.com/400x500?text=Image+Not+Found'">
                         <div class="card-info">
-                            <span style="font-size:0.6rem; font-weight:800; color:var(--pink);">GLOBAL DEAL</span>
-                            <h4 style="margin:5px 0;">${p.name}</h4>
-                            <div class="price">₹${p.price}</div>
-                            <button class="buy-btn" onclick="window.open('${p.image_url}', '_blank')">View Deal</button>
+                            <div>
+                                <span style="font-size:0.6rem; font-weight:800; color:var(--pink);">GLOBAL DEAL</span>
+                                <h4 style="margin:5px 0;">${p.name}</h4>
+                                <div class="price">₹${Number(p.price).toLocaleString()}</div>
+                            </div>
+                            <button class="buy-btn" onclick="window.open('${finalLink}', '_blank')">
+                                View Deal
+                            </button>
                         </div>
                     </div>
                 `;
             });
+        } else {
+            container.innerHTML = '<p style="grid-column: 1/-1; text-align:center;">Mall is empty. Add products in Supabase!</p>';
         }
     }
 
-    // RUN ON LOAD
+    // Run on page load
     displayProducts();
 </script>
 
