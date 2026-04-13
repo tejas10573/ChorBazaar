@@ -9,47 +9,37 @@
         :root { --pink: #ff3f6c; --dark: #282c3f; --bg-gray: #f5f5f6; }
         body { font-family: 'Montserrat', sans-serif; margin: 0; padding-top: 80px; background: white; color: var(--dark); overflow-x: hidden; }
         
-        /* NAVIGATION & SEARCH BAR */
+        /* NAVIGATION */
         nav { position: fixed; top: 0; width: 100%; height: 80px; background: white; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); z-index: 1000; box-sizing: border-box; }
-        
-        .logo-container { display: flex; align-items: center; gap: 12px; cursor: pointer; text-decoration: none; }
-        .nav-logo-img { height: 45px; width: auto; object-fit: contain; }
-        .logo-text { font-size: 1.4rem; font-weight: 800; color: var(--dark); letter-spacing: -1px; }
+        .logo-container { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        .nav-logo-img { height: 45px; width: auto; }
+        .logo-text { font-size: 1.4rem; font-weight: 800; color: var(--dark); }
         .logo-text span { color: var(--pink); }
 
-        .search-container { flex-grow: 1; margin: 0 40px; max-width: 500px; position: relative; }
-        #aiSearch { width: 100%; padding: 12px 20px; border-radius: 8px; border: 1px solid #ddd; background: var(--bg-gray); outline: none; font-family: 'Montserrat'; transition: 0.3s; }
-        #aiSearch:focus { border-color: var(--pink); background: white; box-shadow: 0 0 10px rgba(255, 63, 108, 0.1); }
+        /* SEARCH BAR */
+        .search-container { flex-grow: 1; margin: 0 40px; max-width: 500px; }
+        #aiSearch { width: 100%; padding: 12px 20px; border-radius: 8px; border: 1px solid #ddd; background: var(--bg-gray); outline: none; font-family: 'Montserrat'; }
+        #aiSearch:focus { border-color: var(--pink); background: white; }
 
         /* HERO SECTION */
-        .hero-ad { 
-            width: 100%; height: 40vh; 
-            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1920&auto=format&fit=crop'); 
-            background-size: cover; background-position: center; 
-            display: flex; align-items: center; justify-content: center; color: white; text-align: center; 
-        }
-        .ad-box { background: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 15px; border: 4px solid var(--pink); color: var(--dark); }
-        .ad-box h1 { font-size: 2.2rem; margin: 0; font-weight: 900; color: #d50032; }
+        .hero-ad { width: 100%; height: 35vh; background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1920'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .ad-box { background: rgba(255, 255, 255, 0.95); padding: 25px; border-radius: 12px; border: 3px solid var(--pink); color: var(--dark); }
 
         /* PRODUCT GRID */
         .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; padding: 40px 5%; max-width: 1400px; margin: 0 auto; }
         .card { border-radius: 12px; overflow: hidden; border: 1px solid #eee; transition: 0.3s; background: white; display: flex; flex-direction: column; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 320px; object-fit: cover; background: #f9f9f9; display: block; }
+        .card img { width: 100%; height: 320px; object-fit: cover; background: #f9f9f9; }
         
         .card-info { padding: 15px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
         .ai-tag { font-size: 0.6rem; font-weight: 800; color: var(--pink); background: #fff0f3; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 8px; text-transform: uppercase; }
         .price { font-size: 1.2rem; color: var(--pink); font-weight: 800; margin: 8px 0; }
         .buy-btn { background: var(--dark); color: white; border: none; padding: 12px; width: 100%; border-radius: 6px; font-weight: 700; cursor: pointer; text-transform: uppercase; }
-        .buy-btn:hover { background: #000; }
 
-        /* MOBILE FIX */
         @media (max-width: 650px) {
             nav { height: auto; padding: 10px 5%; flex-direction: column; }
             .search-container { margin: 10px 0; width: 100%; }
             body { padding-top: 150px; }
-            .logo-text { font-size: 1.1rem; }
-            .nav-logo-img { height: 35px; }
         }
     </style>
 </head>
@@ -57,14 +47,98 @@
 
 <nav>
     <div class="logo-container" onclick="location.reload()">
-        <img src="Chorbazaar AI logo design.png" alt="ChorBazaar AI Logo" class="nav-logo-img">
+        <img src="Chorbazaar AI logo design.png" alt="Logo" class="nav-logo-img" onerror="this.style.display='none'">
         <div class="logo-text">Chor<span>Bazaar</span> <small style="background:var(--pink); color:white; font-size:0.6rem; padding:2px 5px; border-radius:4px;">AI</small></div>
     </div>
     <div class="search-container">
-        <input type="text" id="aiSearch" placeholder="Ask AI: Try 'Mobile', 'Fashion', or product names..." onkeyup="runAiSearch()">
+        <input type="text" id="aiSearch" placeholder="Narrow AI Search..." onkeyup="runAiSearch()">
     </div>
 </nav>
 
 <div class="hero-ad">
     <div class="ad-box">
-        <p style="color:var(--pink); font
+        <h1>LUXE MALL</h1>
+        <p>AI Powered Deals</p>
+    </div>
+</div>
+
+<div class="container" id="product-container">
+    <p style="grid-column: 1/-1; text-align:center; padding: 50px;">AI is connecting to database...</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+    const _supabase = supabase.createClient(
+        'https://nmwxwfswxeidccbntoxg.supabase.co', 
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5td3h3ZnN3eGVpZGNjYm50b3hnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5OTYzMDAsImV4cCI6MjA5MTU3MjMwMH0.0P27CU9Nm1qxUQaoC4dVkdb8CX1sXRIYl6jhuDMnH_0'
+    );
+
+    let masterProductList = [];
+
+    // NARROW AI LOGIC
+    function getAiCategory(name) {
+        if (!name) return 'Luxe ✨';
+        const n = name.toLowerCase();
+        if (n.includes('phone') || n.includes('iphone') || n.includes('samsung') || n.includes('poco')) return 'Mobile 📱';
+        if (n.includes('watch') || n.includes('smart') || n.includes('buds')) return 'Gadgets 🎧';
+        if (n.includes('shirt') || n.includes('shoe') || n.includes('fashion')) return 'Fashion 👕';
+        return 'Premium ✨';
+    }
+
+    async function fetchInventory() {
+        // Fetching with a small delay to ensure connection is ready
+        const { data, error } = await _supabase.from('products').select('*');
+        
+        if (error) {
+            console.error('Error:', error);
+            return;
+        }
+
+        if (data) {
+            masterProductList = data;
+            renderDisplay(masterProductList);
+        }
+    }
+
+    function renderDisplay(list) {
+        const container = document.getElementById('product-container');
+        if (!list || list.length === 0) {
+            container.innerHTML = '<p style="grid-column: 1/-1; text-align:center;">No products found in Supabase.</p>';
+            return;
+        }
+
+        container.innerHTML = ''; 
+        list.forEach(p => {
+            const aiCategory = getAiCategory(p.name);
+            let finalLink = (p.link && !p.link.startsWith('http')) ? 'https://' + p.link : p.link;
+
+            container.innerHTML += `
+                <div class="card">
+                    <img src="${p.image_url}" onerror="this.src='https://via.placeholder.com/400x500?text=Check+Image+Link'">
+                    <div class="card-info">
+                        <div>
+                            <span class="ai-tag">AI: ${aiCategory}</span>
+                            <h4 style="margin:5px 0;">${p.name}</h4>
+                            <div class="price">₹${Number(p.price).toLocaleString()}</div>
+                        </div>
+                        <button class="buy-btn" onclick="window.open('${finalLink}', '_blank')">View Deal</button>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    function runAiSearch() {
+        const query = document.getElementById('aiSearch').value.toLowerCase();
+        const filtered = masterProductList.filter(p => {
+            const category = getAiCategory(p.name).toLowerCase();
+            return p.name.toLowerCase().includes(query) || category.includes(query);
+        });
+        renderDisplay(filtered);
+    }
+
+    fetchInventory();
+</script>
+</body>
+</html>
