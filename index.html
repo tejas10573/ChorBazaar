@@ -56,6 +56,28 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+    globalProducts.forEach(p => {
+    // TRIGGER THE NARROW AI LOGIC
+    const aiCategory = getAiCategory(p.name);
+
+    container.innerHTML += `
+        <div class="card">
+            <img src="${p.image_url}" onerror="this.src='https://via.placeholder.com/400x500'">
+            <div class="card-info">
+                <span style="font-size:0.6rem; font-weight:800; color:var(--pink); background:#fff0f3; padding:2px 8px; border-radius:10px;">
+                    ${aiCategory}
+                </span>
+                
+                <h4 style="margin:8px 0;">${p.name}</h4>
+                <div class="price">₹${Number(p.price).toLocaleString()}</div>
+                
+                <button class="buy-btn" onclick="window.open('${p.link}', '_blank')">
+                    View Deal
+                </button>
+            </div>
+        </div>
+    `;
+});
     // 2. SUPABASE CONNECTION
     const _supabase = supabase.createClient(
         'https://nmwxwfswxeidccbntoxg.supabase.co', 
