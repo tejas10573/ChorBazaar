@@ -8,58 +8,60 @@
     <style>
         :root { --pink: #ff3f6c; --dark: #050505; --card: #111113; }
 
-        /* THE "ALWAYS LIVE" NEURAL BACKGROUND */
+        /* THE KINETIC LIVE BACKGROUND */
         body { 
             margin: 0; padding-top: 80px; 
             font-family: 'Montserrat', sans-serif;
             color: white;
-            background: #050505; /* Fallback */
-            background-image: 
-                radial-gradient(circle at 20% 30%, rgba(255, 63, 108, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(255, 63, 108, 0.08) 0%, transparent 40%),
-                linear-gradient(135deg, #050505 0%, #0f0f12 100%);
-            background-size: 200% 200%;
-            animation: pulseBackground 10s ease-in-out infinite;
+            /* High-contrast gradient for visible movement */
+            background: linear-gradient(135deg, #050505, #16161a, #250a12, #050505);
+            background-size: 300% 300%;
+            animation: kineticMove 8s ease infinite; /* Faster timing (8s) makes it "Live" */
             overflow-x: hidden;
             min-height: 100vh;
         }
 
-        @keyframes pulseBackground {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 100% 100%; }
-            100% { background-position: 0% 0%; }
+        @keyframes kineticMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         /* LOGO & NAV */
         nav { 
             position: fixed; top: 0; width: 100%; height: 80px; 
-            background: rgba(5, 5, 5, 0.9); backdrop-filter: blur(20px); 
+            background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(25px); 
             display: flex; align-items: center; justify-content: space-between; 
             padding: 0 5%; z-index: 1000; box-sizing: border-box;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 2px solid var(--pink); /* Visible "Neural" border */
         }
-        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; cursor: pointer; }
-        .logo span { color: var(--pink); text-shadow: 0 0 15px var(--pink); }
+        .logo { font-weight: 800; font-size: 1.3rem; letter-spacing: 2px; cursor: pointer; }
+        .logo span { color: var(--pink); text-shadow: 0 0 20px var(--pink); animation: pulseLogo 2s infinite; }
+
+        @keyframes pulseLogo {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
 
         /* SEARCH BAR */
         .search-container { flex-grow: 1; margin: 0 40px; max-width: 400px; }
         #aiSearch { 
-            width: 100%; padding: 12px 20px; border-radius: 2px; 
-            border: 1px solid #333; background: rgba(255,255,255,0.03); 
+            width: 100%; padding: 12px 20px; border-radius: 4px; 
+            border: 1px solid #333; background: rgba(255,255,255,0.05); 
             color: white; outline: none; transition: 0.3s;
         }
-        #aiSearch:focus { border-color: var(--pink); box-shadow: 0 0 10px rgba(255,63,108,0.2); }
+        #aiSearch:focus { border-color: var(--pink); background: rgba(255,255,255,0.1); }
 
         /* HERO SECTION */
         .hero { 
-            width: 100%; height: 60vh; 
-            background: linear-gradient(to right, #050505, transparent), 
+            width: 100%; height: 50vh; 
+            background: linear-gradient(to right, #050505, rgba(0,0,0,0.2)), 
                         url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920');
             background-size: cover; background-position: center;
             display: flex; align-items: center; padding: 0 8%; box-sizing: border-box;
         }
-        .hero h1 { font-size: 3.5rem; margin: 0; line-height: 0.9; }
-        .hero p { color: var(--pink); letter-spacing: 5px; font-weight: 600; font-size: 0.8rem; }
+        .hero h1 { font-size: 3.5rem; margin: 0; line-height: 1; }
+        .hero p { color: var(--pink); letter-spacing: 6px; font-weight: 800; font-size: 0.7rem; }
 
         /* PRODUCT GRID */
         .container { 
@@ -70,19 +72,20 @@
             background: var(--card); border: 1px solid #222; 
             transition: 0.4s; position: relative; overflow: hidden;
         }
-        .card:hover { transform: translateY(-5px); border-color: var(--pink); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .card img { width: 100%; height: 350px; object-fit: cover; opacity: 0.8; transition: 0.4s; }
-        .card:hover img { opacity: 1; transform: scale(1.05); }
+        .card:hover { transform: scale(1.03); border-color: var(--pink); box-shadow: 0 0 30px rgba(255, 63, 108, 0.2); }
+        .card img { width: 100%; height: 350px; object-fit: cover; filter: brightness(0.7); transition: 0.4s; }
+        .card:hover img { filter: brightness(1); }
 
         .info { padding: 20px; }
-        .tag { font-size: 0.6rem; color: var(--pink); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        .tag { font-size: 0.6rem; color: var(--pink); font-weight: 800; text-transform: uppercase; }
         .name { font-size: 1.1rem; margin: 10px 0; font-weight: 600; height: 45px; overflow: hidden; }
-        .price { font-size: 1.3rem; margin-bottom: 15px; }
+        .price { font-size: 1.5rem; font-weight: 300; margin-bottom: 20px; }
         .btn { 
-            background: transparent; color: white; border: 1px solid #444; 
-            padding: 12px; width: 100%; cursor: pointer; font-weight: 600; transition: 0.3s;
+            background: white; color: black; border: none; 
+            padding: 15px; width: 100%; cursor: pointer; font-weight: 800; transition: 0.3s;
+            text-transform: uppercase; letter-spacing: 1px;
         }
-        .btn:hover { background: white; color: black; border-color: white; }
+        .btn:hover { background: var(--pink); color: white; }
 
         @media (max-width: 768px) {
             nav { flex-direction: column; height: auto; padding: 15px; }
@@ -96,20 +99,20 @@
 <nav>
     <div class="logo" onclick="location.reload()">GAMERZ <span>CHORBAZAAR</span></div>
     <div class="search-container">
-        <input type="text" id="aiSearch" placeholder="SEARCH ARMORY..." onkeyup="runAiSearch()">
+        <input type="text" id="aiSearch" placeholder="ACCESS ARMORY..." onkeyup="runAiSearch()">
     </div>
 </nav>
 
 <div class="hero">
     <div>
-        <p>ELITE GEAR ONLY</p>
-        <h1>PRO-GRADE<br>SELECTION</h1>
-        <button class="btn" style="width:auto; padding: 15px 40px; margin-top: 25px;">DISCOVER →</button>
+        <p>SYSTEM ONLINE</p>
+        <h1>ULTRA-Luxe<br>GAMING</h1>
+        <button class="btn" style="width:auto; padding: 15px 45px; margin-top: 25px;">SCAN COLLECTION</button>
     </div>
 </div>
 
 <div class="container" id="product-container">
-    <p style="grid-column:1/-1; text-align:center; opacity:0.5;">Connecting to Gamerz Database...</p>
+    <p style="grid-column:1/-1; text-align:center;">Synchronizing Gamerz Hub...</p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -141,7 +144,167 @@
                         <span class="tag">Gamerz Edition</span>
                         <div class="name">${p.name}</div>
                         <div class="price">₹${Number(p.price).toLocaleString()}</div>
-                        <button class="btn" onclick="window.open('${p.link}', '_blank')">UNBOX DEAL</button>
+                        <button class="btn" onclick="window.open('${p.link}', '_blank')">UNBOX</button>
+                    </div>
+                </div>`;
+        });
+    }
+
+    function runAiSearch() {
+        const query = document.getElementById('aiSearch').value.toLowerCase();
+        render(masterList.filter(p => p.name.toLowerCase().includes(query)));
+    }
+
+    fetchMall();
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamerz ChorBazaar | Live Pro Mall</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --pink: #ff3f6c; --dark: #050505; --card: #111113; }
+
+        /* THE KINETIC LIVE BACKGROUND */
+        body { 
+            margin: 0; padding-top: 80px; 
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            /* High-contrast gradient for visible movement */
+            background: linear-gradient(135deg, #050505, #16161a, #250a12, #050505);
+            background-size: 300% 300%;
+            animation: kineticMove 8s ease infinite; /* Faster timing (8s) makes it "Live" */
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        @keyframes kineticMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* LOGO & NAV */
+        nav { 
+            position: fixed; top: 0; width: 100%; height: 80px; 
+            background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(25px); 
+            display: flex; align-items: center; justify-content: space-between; 
+            padding: 0 5%; z-index: 1000; box-sizing: border-box;
+            border-bottom: 2px solid var(--pink); /* Visible "Neural" border */
+        }
+        .logo { font-weight: 800; font-size: 1.3rem; letter-spacing: 2px; cursor: pointer; }
+        .logo span { color: var(--pink); text-shadow: 0 0 20px var(--pink); animation: pulseLogo 2s infinite; }
+
+        @keyframes pulseLogo {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* SEARCH BAR */
+        .search-container { flex-grow: 1; margin: 0 40px; max-width: 400px; }
+        #aiSearch { 
+            width: 100%; padding: 12px 20px; border-radius: 4px; 
+            border: 1px solid #333; background: rgba(255,255,255,0.05); 
+            color: white; outline: none; transition: 0.3s;
+        }
+        #aiSearch:focus { border-color: var(--pink); background: rgba(255,255,255,0.1); }
+
+        /* HERO SECTION */
+        .hero { 
+            width: 100%; height: 50vh; 
+            background: linear-gradient(to right, #050505, rgba(0,0,0,0.2)), 
+                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; padding: 0 8%; box-sizing: border-box;
+        }
+        .hero h1 { font-size: 3.5rem; margin: 0; line-height: 1; }
+        .hero p { color: var(--pink); letter-spacing: 6px; font-weight: 800; font-size: 0.7rem; }
+
+        /* PRODUCT GRID */
+        .container { 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 30px; padding: 50px 5%; max-width: 1400px; margin: 0 auto; 
+        }
+        .card { 
+            background: var(--card); border: 1px solid #222; 
+            transition: 0.4s; position: relative; overflow: hidden;
+        }
+        .card:hover { transform: scale(1.03); border-color: var(--pink); box-shadow: 0 0 30px rgba(255, 63, 108, 0.2); }
+        .card img { width: 100%; height: 350px; object-fit: cover; filter: brightness(0.7); transition: 0.4s; }
+        .card:hover img { filter: brightness(1); }
+
+        .info { padding: 20px; }
+        .tag { font-size: 0.6rem; color: var(--pink); font-weight: 800; text-transform: uppercase; }
+        .name { font-size: 1.1rem; margin: 10px 0; font-weight: 600; height: 45px; overflow: hidden; }
+        .price { font-size: 1.5rem; font-weight: 300; margin-bottom: 20px; }
+        .btn { 
+            background: white; color: black; border: none; 
+            padding: 15px; width: 100%; cursor: pointer; font-weight: 800; transition: 0.3s;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .btn:hover { background: var(--pink); color: white; }
+
+        @media (max-width: 768px) {
+            nav { flex-direction: column; height: auto; padding: 15px; }
+            .search-container { margin: 15px 0; width: 100%; }
+            body { padding-top: 150px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="logo" onclick="location.reload()">GAMERZ <span>CHORBAZAAR</span></div>
+    <div class="search-container">
+        <input type="text" id="aiSearch" placeholder="ACCESS ARMORY..." onkeyup="runAiSearch()">
+    </div>
+</nav>
+
+<div class="hero">
+    <div>
+        <p>SYSTEM ONLINE</p>
+        <h1>ULTRA-Luxe<br>GAMING</h1>
+        <button class="btn" style="width:auto; padding: 15px 45px; margin-top: 25px;">SCAN COLLECTION</button>
+    </div>
+</div>
+
+<div class="container" id="product-container">
+    <p style="grid-column:1/-1; text-align:center;">Synchronizing Gamerz Hub...</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    const _supabase = supabase.createClient(
+        'https://nmwxwfswxeidccbntoxg.supabase.co', 
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5td3h3ZnN3eGVpZGNjYm50b3hnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5OTYzMDAsImV4cCI6MjA5MTU3MjMwMH0.0P27CU9Nm1qxUQaoC4dVkdb8CX1sXRIYl6jhuDMnH_0'
+    );
+
+    let masterList = [];
+
+    async function fetchMall() {
+        const { data } = await _supabase.from('products').select('*');
+        if (data) {
+            masterList = data;
+            render(masterList);
+        }
+    }
+
+    function render(list) {
+        const container = document.getElementById('product-container');
+        container.innerHTML = '';
+        list.forEach(p => {
+            let img = p.image_url || 'https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=800';
+            container.innerHTML += `
+                <div class="card">
+                    <img src="${img}">
+                    <div class="info">
+                        <span class="tag">Gamerz Edition</span>
+                        <div class="name">${p.name}</div>
+                        <div class="price">₹${Number(p.price).toLocaleString()}</div>
+                        <button class="btn" onclick="window.open('${p.link}', '_blank')">UNBOX</button>
                     </div>
                 </div>`;
         });
