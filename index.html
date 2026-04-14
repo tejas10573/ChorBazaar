@@ -3,124 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamerz ChorBazaar | Premium Pro Store</title>
+    <title>Gamerz ChorBazaar | Start Buying</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --accent: #00ffaa; /* Clean Gaming Green */
-            --dark: #0a0a0b; 
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.08);
+            --accent: #00ffaa; 
+            --dark: #050506; 
+            --border: rgba(255, 255, 255, 0.1);
         }
 
-        /* PREMIUM DARK CANVAS */
-        body { 
-            margin: 0; padding-top: 80px; font-family: 'Inter', sans-serif; color: white;
-            background: var(--dark); overflow-x: hidden;
-            background-image: radial-gradient(circle at 50% -20%, #1a1a1f 0%, #0a0a0b 80%);
+        body, html { 
+            margin: 0; padding: 0; font-family: 'Inter', sans-serif; color: white;
+            background: var(--dark); scroll-behavior: smooth;
         }
 
-        /* NAVIGATION - CLEAN & MINIMAL */
-        nav { 
-            position: fixed; top: 0; width: 100%; height: 70px; 
-            background: rgba(10, 10, 11, 0.8); backdrop-filter: blur(20px); 
-            display: flex; align-items: center; justify-content: space-between; 
-            padding: 0 6%; z-index: 1000; box-sizing: border-box;
-            border-bottom: 1px solid var(--border);
-        }
-        .logo { font-weight: 800; font-size: 1.1rem; letter-spacing: 1px; text-transform: uppercase; }
-        .logo span { color: var(--accent); }
-
-        /* HERO SECTION - REFINED */
-        .hero { 
-            width: 100%; height: 75vh; 
-            background: linear-gradient(to right, var(--dark) 30%, transparent), 
-                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920');
-            background-size: cover; background-position: center;
-            display: flex; align-items: center; padding: 0 8%; box-sizing: border-box;
-        }
-        .hero-content { max-width: 600px; }
-        .hero-content p { color: var(--accent); font-weight: 600; letter-spacing: 4px; font-size: 0.7rem; text-transform: uppercase; margin-bottom: 15px; }
-        .hero-content h1 { font-size: 4rem; font-weight: 800; line-height: 1; margin: 0 0 30px 0; letter-spacing: -2px; }
-
-        /* GLASSMOPHISM ACTION BUTTON */
-        .cta-btn { 
-            background: var(--accent); color: black; border: none; 
-            padding: 16px 45px; border-radius: 4px; font-weight: 700; cursor: pointer;
-            transition: 0.3s; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;
-        }
-        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 255, 170, 0.3); }
-
-        /* THE PRODUCT GRID - CLEAN & SPACED */
-        .container { 
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); 
-            gap: 30px; padding: 100px 6%; max-width: 1600px; margin: 0 auto; 
+        /* BANNER VIDEO CONTAINER (2048 x 1152) */
+        .hero-viewport {
+            position: relative; width: 100%; height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden; background: #000;
         }
 
-        /* PREMIUM GLASS CARD */
+        .video-background {
+            position: absolute; top: 50%; left: 50%;
+            width: 100vw; height: 56.25vw; /* 2048x1152 aspect ratio math */
+            min-height: 100vh; min-width: 177.77vh;
+            transform: translate(-50%, -50%);
+            pointer-events: none; opacity: 0.5;
+        }
+
+        /* GLASS OVERLAY TEXT */
+        .hero-content {
+            position: relative; z-index: 10; text-align: center;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 5.5rem); font-weight: 800; 
+            line-height: 0.95; margin: 0 0 40px 0; text-transform: uppercase;
+        }
+
+        .hero-content h1 span { color: var(--accent); display: block; }
+
+        /* THE REDIRECTION BUTTON */
+        .get-started-btn {
+            background: transparent; color: white; border: 2px solid white;
+            padding: 20px 60px; font-size: 1rem; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 4px; cursor: pointer;
+            transition: 0.4s cubic-bezier(0.2, 1, 0.3, 1);
+            border-radius: 2px;
+        }
+
+        .get-started-btn:hover {
+            background: white; color: black; transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255,255,255,0.2);
+        }
+
+        /* MAIN SITE SECTION */
+        .main-site-section {
+            min-height: 100vh; padding: 100px 5%;
+            background: radial-gradient(circle at top, #111 0%, var(--dark) 100%);
+        }
+
+        .inventory-grid { 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); 
+            gap: 40px; margin-top: 60px;
+        }
+
         .card { 
-            background: var(--glass); border: 1px solid var(--border); 
-            border-radius: 12px; overflow: hidden; transition: 0.4s ease;
-            position: relative;
+            background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+            border-radius: 8px; overflow: hidden; transition: 0.4s;
         }
-        .card:hover { border-color: var(--accent); background: rgba(255,255,255,0.05); }
+        .card:hover { border-color: var(--accent); transform: translateY(-10px); }
+        .card img { width: 100%; height: 350px; object-fit: cover; filter: brightness(0.8); }
+        .card-info { padding: 25px; }
 
-        .card img { 
-            width: 100%; height: 420px; object-fit: cover; 
-            transition: 0.6s cubic-bezier(0.2, 1, 0.3, 1); 
-            filter: brightness(0.9);
-        }
-        .card:hover img { transform: scale(1.05); filter: brightness(1.1); }
-
-        /* PRODUCT INFO OVERLAY */
-        .info { 
-            padding: 30px; 
-            background: linear-gradient(transparent, rgba(0,0,0,0.9) 80%);
-            position: absolute; bottom: 0; width: 100%; box-sizing: border-box;
-        }
-        .name { font-size: 1.2rem; font-weight: 600; margin-bottom: 8px; color: #fff; }
-        .price { font-size: 1.5rem; font-weight: 300; color: #fff; margin-bottom: 20px; }
-        
-        .buy-btn { 
-            background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255,255,255,0.2); 
-            padding: 12px; width: 100%; border-radius: 4px; cursor: pointer;
-            font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s;
-        }
-        .buy-btn:hover { background: white; color: black; }
-
-        /* SEARCH INTERFACE */
-        .search-box {
-            background: var(--glass); border: 1px solid var(--border);
-            padding: 10px 20px; border-radius: 6px; color: white; outline: none;
-            width: 100%; max-width: 400px; font-size: 0.8rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            nav { padding: 0 4%; }
-        }
     </style>
 </head>
 <body>
 
-<nav>
-    <div class="logo">GAMERZ <span>CHORBAZAAR</span></div>
-    <div style="flex-grow: 1; display: flex; justify-content: center; margin: 0 20px;">
-        <input type="text" id="aiSearch" class="search-box" placeholder="Search the collection..." onkeyup="runAiSearch()">
+<div class="hero-viewport">
+    <div class="video-background">
+        <iframe 
+            width="2048" height="1152"
+            src="https://www.youtube.com/embed/Bs8tudsVD0Y?autoplay=1&mute=1&controls=0&loop=1&playlist=Bs8tudsVD0Y&modestbranding=1" 
+            frameborder="0" allow="autoplay; encrypted-media">
+        </iframe>
     </div>
-    <div style="font-size: 0.8rem; font-weight: 600; opacity: 0.6;">ACCOUNT</div>
-</nav>
-
-<div class="hero">
+    
     <div class="hero-content">
-        <p>Special Edition Series</p>
-        <h1>ELITE CRAFTED<br>GAMING GEAR</h1>
-        <button class="cta-btn">DISCOVER THE SERIES</button>
+        <h1>START BUYING<br><span>YOUR GAMING EQUIPMENT</span></h1>
+        <button class="get-started-btn" onclick="document.getElementById('shop').scrollIntoView();">GET STARTED</button>
     </div>
 </div>
 
-<div class="container" id="product-container">
-    <p style="grid-column: 1/-1; text-align:center; opacity:0.3;">Fetching Gear...</p>
+<div id="shop" class="main-site-section">
+    <div style="border-left: 4px solid var(--accent); padding-left: 20px;">
+        <h2 style="font-size: 2.5rem; margin: 0;">ELITE INVENTORY</h2>
+        <p style="opacity: 0.5; letter-spacing: 2px;">AUTHENTICATED GAMING GEAR</p>
+    </div>
+
+    <div class="inventory-grid" id="main-grid">
+        </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -130,39 +114,24 @@
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5td3h3ZnN3eGVpZGNjYm50b3hnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5OTYzMDAsImV4cCI6MjA5MTU3MjMwMH0.0P27CU9Nm1qxUQaoC4dVkdb8CX1sXRIYl6jhuDMnH_0'
     );
 
-    let masterList = [];
-
-    async function fetchInventory() {
+    async function load() {
         const { data } = await _supabase.from('products').select('*');
+        const grid = document.getElementById('main-grid');
         if (data) {
-            masterList = data;
-            render(masterList);
+            grid.innerHTML = '';
+            data.forEach(p => {
+                grid.innerHTML += `
+                    <div class="card" onclick="window.open('${p.link}', '_blank')">
+                        <img src="${p.image_url}" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800'">
+                        <div class="card-info">
+                            <div style="font-weight: 800; font-size: 1.2rem; margin-bottom: 10px;">${p.name}</div>
+                            <div style="color: var(--accent); font-weight: 800;">₹${Number(p.price).toLocaleString()}</div>
+                        </div>
+                    </div>`;
+            });
         }
     }
-
-    function render(list) {
-        const container = document.getElementById('product-container');
-        container.innerHTML = '';
-        
-        list.forEach(p => {
-            container.innerHTML += `
-                <div class="card">
-                    <img src="${p.image_url}" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800'">
-                    <div class="info">
-                        <div class="name">${p.name}</div>
-                        <div class="price">₹${Number(p.price).toLocaleString()}</div>
-                        <button class="buy-btn" onclick="window.open('${p.link}', '_blank')">View Product</button>
-                    </div>
-                </div>`;
-        });
-    }
-
-    function runAiSearch() {
-        const query = document.getElementById('aiSearch').value.toLowerCase();
-        render(masterList.filter(p => p.name.toLowerCase().includes(query)));
-    }
-
-    fetchInventory();
+    load();
 </script>
 </body>
 </html>
