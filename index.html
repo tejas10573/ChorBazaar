@@ -3,157 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamerz Chor Bazaar | AI Gamerz Mall</title>
+    <title>ChorBazaar | AI Luxe Mall</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --pink: #ff3f6c; --dark: #282c3f; --bg-gray: #f5f5f6; }
-        body { font-family: 'Montserrat', sans-serif; margin: 0; padding-top: 80px; background:#A8D5E3 ; color: var(--dark); overflow-x: hidden; }
+        :root { --pink: #ff3f6c; --dark: #1a1a1a; --bg: #0f0f0f; }
+        body { font-family: 'Montserrat', sans-serif; margin: 0; padding-top: 80px; background: var(--bg); color: white; overflow-x: hidden; }
         
-        /* NAVIGATION & AI SEARCH BAR */
-        nav { position: fixed; top: 0; width: 100%; height: 80px; background: white; display: flex; align-items: center; justify-content: space-between; padding: 0 5%; box-shadow: 0 4px 15px rgba(0,0,0,0.05); z-index: 1000; box-sizing: border-box; }
-        .logo { font-size: 1.8rem; font-weight: 800; color: var(--pink); letter-spacing: -1px; cursor: pointer; }
+        /* PREMIUM NAVIGATION */
+        nav { position: fixed; top: 0; width: 100%; height: 80px; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: space-between; padding: 0 5%; z-index: 1000; box-sizing: border-box; border-bottom: 1px solid #333; }
+        .logo-container { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .nav-logo-img { height: 40px; filter: drop-shadow(0 0 5px var(--pink)); }
+        .logo-text { font-size: 1.4rem; font-weight: 800; letter-spacing: -1px; }
+        .logo-text span { color: var(--pink); }
+
+        /* AI SEARCH BAR */
+        .search-container { flex-grow: 1; margin: 0 40px; max-width: 500px; }
+        #aiSearch { width: 100%; padding: 12px 20px; border-radius: 30px; border: 1px solid #444; background: #222; color: white; outline: none; transition: 0.3s; }
+        #aiSearch:focus { border-color: var(--pink); box-shadow: 0 0 15px rgba(255, 63, 108, 0.3); }
+
+        /* HERO SECTION (MERCEDES STYLE) */
+        .hero-ad { width: 100%; height: 60vh; background: linear-gradient(to right, rgba(0,0,0,0.8), transparent), url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1920'); background-size: cover; background-position: center; display: flex; align-items: center; padding-left: 10%; }
+        .hero-content h1 { font-size: 3.5rem; font-weight: 900; margin: 0; line-height: 1; }
+        .hero-content p { color: var(--pink); font-weight: 600; letter-spacing: 3px; }
+
+        /* LUXE GRID */
+        .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding: 50px 5%; max-width: 1400px; margin: 0 auto; }
+        .card { background: #1a1a1a; border-radius: 20px; overflow: hidden; border: 1px solid #333; transition: 0.4s; position: relative; }
+        .card:hover { transform: translateY(-10px); border-color: var(--pink); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .card img { width: 100%; height: 350px; object-fit: cover; transition: 0.5s; }
+        .card:hover img { scale: 1.05; }
         
-        .search-container { flex-grow: 1; margin: 0 40px; max-width: 500px; position: relative; }
-        #aiSearch { width: 100%; padding: 12px 20px; border-radius: 8px; border: 1px solid #ddd; background: var(--bg-gray); outline: none; font-family: 'Montserrat'; transition: 0.3s; }
-        #aiSearch:focus { border-color: var(--pink); background: white; box-shadow: 0 0 10px rgba(255, 63, 108, 0.1); }
+        .card-info { padding: 20px; text-align: left; }
+        .ai-badge { font-size: 0.6rem; color: var(--pink); border: 1px solid var(--pink); padding: 3px 10px; border-radius: 50px; text-transform: uppercase; font-weight: 700; }
+        .price { font-size: 1.4rem; font-weight: 800; margin: 10px 0; color: white; }
+        .buy-btn { background: white; color: black; border: none; padding: 15px; width: 100%; border-radius: 12px; font-weight: 800; cursor: pointer; transition: 0.3s; }
+        .buy-btn:hover { background: var(--pink); color: white; }
 
-        /* HERO SECTION */
-        .hero-ad { 
-            width: 100%; height: 40vh; 
-            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1920&auto=format&fit=crop'); 
-            background-size: cover; background-position: center; 
-            display: flex; align-items: center; justify-content: center; color: white; text-align: center; 
-        }
-        .ad-box { background: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 15px; border: 4px solid var(--pink); color: var(--dark); }
-        .ad-box h1 { font-size: 2.2rem; margin: 0; font-weight: 900; color: #d50032; }
-
-        /* PRODUCT GRID */
-        .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 25px; padding: 40px 5%; max-width: 1400px; margin: 0 auto; }
-        .card { border-radius: 12px; overflow: hidden; border: 1px solid #eee; transition: 0.3s; background: white; display: flex; flex-direction: column; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: 320px; object-fit: cover; background: #f9f9f9; display: block; }
-        
-        .card-info { padding: 15px; text-align: center; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .ai-tag { font-size: 0.6rem; font-weight: 800; color: var(--pink); background: #fff0f3; padding: 4px 10px; border-radius: 20px; display: inline-block; margin-bottom: 8px; text-transform: uppercase; }
-        .price { font-size: 1.2rem; color: var(--pink); font-weight: 800; margin: 8px 0; }
-        .buy-btn { background: var(--dark); color: white; border: none; padding: 12px; width: 100%; border-radius: 6px; font-weight: 700; cursor: pointer; text-transform: uppercase; }
-        .buy-btn:hover { background: #000; }
-
-        @media (max-width: 600px) {
-            nav { height: auto; padding: 10px 5%; flex-direction: column; }
-            .search-container { margin: 10px 0; max-width: 100%; width: 100%; }
-            body { padding-top: 140px; }
+        @media (max-width: 768px) {
+            nav { flex-direction: column; height: auto; padding: 15px; }
+            .search-container { margin: 15px 0; width: 100%; }
+            .hero-content h1 { font-size: 2rem; }
+            body { padding-top: 160px; }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo" onclick="location.reload()">Gamerz Chor Bazaar</div>
+    <div class="logo-container" onclick="location.reload()">
+        <img src="logo.png" alt="Logo" class="nav-logo-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2103/2103633.png'">
+        <div class="logo-text">CHOR<span>BAZAAR</span></div>
+    </div>
     <div class="search-container">
-        <input type="text" id="aiSearch" placeholder="Narrow AI: Search 'Tech', 'Mobile', or products..." onkeyup="runAiSearch()">
+        <input type="text" id="aiSearch" placeholder="Ask Narrow AI for Luxe Deals..." onkeyup="runAiSearch()">
     </div>
 </nav>
 
 <div class="hero-ad">
-    <div class="ad-box">
-        <p style="color:var(--pink); font-weight:800; letter-spacing:2px;">INTELLIGENT SELECTIONS</p>
-        <h1>LUXE MALL</h1>
-        <p>Direct Deals • AI Powered</p>
+    <div class="hero-content">
+        <p>SPECIAL EDITION</p>
+        <h1>PREMIUM<br>MOTORSPORT</h1>
+        <button class="buy-btn" style="width: auto; padding: 15px 40px; margin-top: 20px;">DISCOVER →</button>
     </div>
 </div>
 
 <div class="container" id="product-container">
-    <p style="grid-column: 1/-1; text-align:center; padding: 50px; opacity:0.5;">Establishing AI Neural Link...</p>
+    <p style="grid-column: 1/-1; text-align:center;">Establishing Secure AI Connection...</p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-    // 1. DATABASE CONNECTION
     const _supabase = supabase.createClient(
         'https://nmwxwfswxeidccbntoxg.supabase.co', 
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5td3h3ZnN3eGVpZGNjYm50b3hnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU5OTYzMDAsImV4cCI6MjA5MTU3MjMwMH0.0P27CU9Nm1qxUQaoC4dVkdb8CX1sXRIYl6jhuDMnH_0'
     );
 
-    let masterProductList = [];
+    let masterList = [];
 
-    // 2. NARROW AI LOGIC: AUTOMATIC CATEGORIZATION
-    function getAiCategory(name) {
-        if (!name) return 'Luxe Item ✨';
+    // NARROW AI LOGIC
+    function getAiTag(name) {
         const n = name.toLowerCase();
-        if (n.includes('iphone') || n.includes('phone') || n.includes('samsung') || n.includes('poco')) return 'Mobile 📱';
-        if (n.includes('watch') || n.includes('smart') || n.includes('buds') || n.includes('airpod')) return 'Gadgets 🎧';
-        if (n.includes('shirt') || n.includes('shoe') || n.includes('jean') || n.includes('fashion')) return 'Fashion 👕';
-        if (n.includes('laptop') || n.includes('macbook') || n.includes('tab') || n.includes('ipad')) return 'Computing 💻';
-        return 'Premium Selection ✨';
+        if (n.includes('chair') || n.includes('seat')) return 'Ergonomic Luxe';
+        if (n.includes('phone') || n.includes('tech')) return 'Advanced Tech';
+        return 'Luxe Edition';
     }
 
-    // 3. FETCH DATA
-    async function fetchInventory() {
+    async function fetchMall() {
         const { data, error } = await _supabase.from('products').select('*');
-        
-        if (error) {
-            console.error('AI Link Failed:', error);
-            document.getElementById('product-container').innerHTML = '<p style="text-align:center;">Database connection error.</p>';
-            return;
+        if (data) {
+            masterList = data;
+            render(masterList);
         }
-
-        masterProductList = data;
-        renderDisplay(masterProductList);
     }
 
-    // 4. RENDER UI
-    function renderDisplay(list) {
+    function render(list) {
         const container = document.getElementById('product-container');
-        if (!list || list.length === 0) {
-            container.innerHTML = '<p style="grid-column: 1/-1; text-align:center;">AI search found no matches.</p>';
-            return;
-        }
+        container.innerHTML = list.length ? '' : '<p style="grid-column:1/-1; text-align:center;">No Luxe items found.</p>';
 
-        container.innerHTML = ''; 
         list.forEach(p => {
-            const aiCategory = getAiCategory(p.name);
-            
-            // Link Formatting Logic
-            let rawLink = p.link || '#';
-            let finalLink = (rawLink !== '#' && !rawLink.startsWith('http')) ? 'https://' + rawLink : rawLink;
+            let img = p.image_url || 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800';
+            let link = (p.link && !p.link.startsWith('http')) ? 'https://' + p.link : p.link;
 
             container.innerHTML += `
                 <div class="card">
-                    <img src="${p.image_url}" onerror="this.src='https://via.placeholder.com/400x500?text=Scan+Failed'">
+                    <img src="${img}" onerror="this.src='https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800'">
                     <div class="card-info">
-                        <div>
-                            <span class="ai-tag">AI: ${aiCategory}</span>
-                            <h4 style="margin:5px 0;">${p.name}</h4>
-                            <div class="price">₹${Number(p.price).toLocaleString()}</div>
-                        </div>
-                        <button class="buy-btn" onclick="window.open('${finalLink}', '_blank')">
-                            View Deal
-                        </button>
+                        <span class="ai-badge">${getAiTag(p.name)}</span>
+                        <h3 style="margin: 15px 0 5px 0; font-size: 1.1rem;">${p.name}</h3>
+                        <div class="price">₹${Number(p.price).toLocaleString()}</div>
+                        <button class="buy-btn" onclick="window.open('${link}', '_blank')">VIEW DETAILS</button>
                     </div>
                 </div>
             `;
         });
     }
 
-    // 5. NARROW AI SMART SEARCH
     function runAiSearch() {
         const query = document.getElementById('aiSearch').value.toLowerCase();
-        
-        const filtered = masterProductList.filter(p => {
-            const category = getAiCategory(p.name).toLowerCase();
-            const name = p.name ? p.name.toLowerCase() : "";
-            // Logic: Search name OR search the AI-generated category
-            return name.includes(query) || category.includes(query);
-        });
-
-        renderDisplay(filtered);
+        const filtered = masterList.filter(p => p.name.toLowerCase().includes(query) || getAiTag(p.name).toLowerCase().includes(query));
+        render(filtered);
     }
 
-    // Run AI scan on page load
-    fetchInventory();
+    fetchMall();
 </script>
-
 </body>
 </html>
