@@ -3,46 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamerz ChorBazaar | AI Gamerz Mall</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>Gamerz ChorBazaar | Pro-Gaming Luxe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --pink: #ff3f6c; --dark: #1a1a1a; --bg: #0f0f0f; }
-        body { font-family: 'Montserrat', sans-serif; margin: 0; padding-top: 80px; background: var(--bg); color: white; overflow-x: hidden; }
+        :root { --pink: #ff3f6c; --dark: #0a0a0b; --card-bg: #141416; }
         
-        /* PREMIUM NAVIGATION */
-        nav { position: fixed; top: 0; width: 100%; height: 80px; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: space-between; padding: 0 5%; z-index: 1000; box-sizing: border-box; border-bottom: 1px solid #333; }
+        /* LIVE NEURAL BACKGROUND */
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            padding-top: 80px; 
+            color: white; 
+            background: linear-gradient(125deg, #0a0a0b, #1a1a1d, #0d0d12, #0a0a0b);
+            background-size: 400% 400%;
+            animation: gradientBG 18s ease infinite;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* GAMERZ NAVIGATION */
+        nav { 
+            position: fixed; top: 0; width: 100%; height: 80px; 
+            background: rgba(10, 10, 11, 0.9); 
+            backdrop-filter: blur(20px); 
+            display: flex; align-items: center; justify-content: space-between; 
+            padding: 0 5%; z-index: 1000; box-sizing: border-box;
+            border-bottom: 1px solid rgba(255, 63, 108, 0.2);
+        }
         .logo-container { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-        .nav-logo-img { height: 40px; filter: drop-shadow(0 0 5px var(--pink)); }
-        .logo-text { font-size: 1.4rem; font-weight: 800; letter-spacing: -1px; }
-        .logo-text span { color: var(--pink); }
+        .logo-text { font-size: 1.3rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+        .logo-text span { color: var(--pink); text-shadow: 0 0 10px rgba(255, 63, 108, 0.5); }
 
-        /* AI SEARCH BAR */
-        .search-container { flex-grow: 1; margin: 0 40px; max-width: 500px; }
-        #aiSearch { width: 100%; padding: 12px 20px; border-radius: 30px; border: 1px solid #444; background: #222; color: white; outline: none; transition: 0.3s; }
-        #aiSearch:focus { border-color: var(--pink); box-shadow: 0 0 15px rgba(255, 63, 108, 0.3); }
+        /* PRO SEARCH BAR */
+        .search-container { flex-grow: 1; margin: 0 40px; max-width: 450px; }
+        #aiSearch { 
+            width: 100%; padding: 12px 25px; border-radius: 2px; 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            background: rgba(255, 255, 255, 0.03); color: white; 
+            outline: none; transition: 0.3s; font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+        #aiSearch:focus { border-color: var(--pink); background: rgba(255, 255, 255, 0.07); box-shadow: 0 0 20px rgba(255, 63, 108, 0.1); }
 
-        /* HERO SECTION (MERCEDES STYLE) */
-        .hero-ad { width: 100%; height: 60vh; background: linear-gradient(to right, rgba(0,0,0,0.8), transparent), url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1920'); background-size: cover; background-position: center; display: flex; align-items: center; padding-left: 10%; }
-        .hero-content h1 { font-size: 3.5rem; font-weight: 900; margin: 0; line-height: 1; }
-        .hero-content p { color: var(--pink); font-weight: 600; letter-spacing: 3px; }
+        /* GAMERZ HERO SECTION */
+        .hero-ad { 
+            width: 100%; height: 70vh; 
+            background: linear-gradient(to right, rgba(10,10,11,0.9), transparent), 
+                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920'); 
+            background-size: cover; background-position: center; 
+            display: flex; align-items: center; padding-left: 8%;
+        }
+        .hero-content h1 { font-size: 4rem; font-weight: 800; margin: 10px 0; line-height: 1; letter-spacing: -3px; }
+        .hero-content p { color: var(--pink); font-weight: 600; letter-spacing: 5px; font-size: 0.75rem; text-transform: uppercase; }
+        .discover-btn { 
+            background: var(--pink); color: white; border: none; 
+            padding: 15px 45px; border-radius: 0px; font-weight: 700; cursor: pointer;
+            transition: 0.3s; margin-top: 25px; text-transform: uppercase; letter-spacing: 2px;
+        }
+        .discover-btn:hover { background: white; color: black; box-shadow: 0 0 25px var(--pink); }
 
-        /* LUXE GRID */
-        .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; padding: 50px 5%; max-width: 1400px; margin: 0 auto; }
-        .card { background: #1a1a1a; border-radius: 20px; overflow: hidden; border: 1px solid #333; transition: 0.4s; position: relative; }
-        .card:hover { transform: translateY(-10px); border-color: var(--pink); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .card img { width: 100%; height: 350px; object-fit: cover; transition: 0.5s; }
-        .card:hover img { scale: 1.05; }
+        /* PRODUCT GRID */
+        .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 35px; padding: 60px 5%; max-width: 1400px; margin: 0 auto; }
+        .card { 
+            background: var(--card-bg); border-radius: 0px; overflow: hidden; 
+            border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.4s; 
+        }
+        .card:hover { transform: scale(1.02); border-color: var(--pink); box-shadow: 0 0 30px rgba(255, 63, 108, 0.2); }
+        .card img { width: 100%; height: 380px; object-fit: cover; filter: brightness(0.8); transition: 0.5s; }
+        .card:hover img { filter: brightness(1); }
         
-        .card-info { padding: 20px; text-align: left; }
-        .ai-badge { font-size: 0.6rem; color: var(--pink); border: 1px solid var(--pink); padding: 3px 10px; border-radius: 50px; text-transform: uppercase; font-weight: 700; }
-        .price { font-size: 1.4rem; font-weight: 800; margin: 10px 0; color: white; }
-        .buy-btn { background: white; color: black; border: none; padding: 15px; width: 100%; border-radius: 12px; font-weight: 800; cursor: pointer; transition: 0.3s; }
-        .buy-btn:hover { background: var(--pink); color: white; }
+        .card-info { padding: 25px; text-align: left; background: linear-gradient(to top, #000, transparent); }
+        .ai-badge { font-size: 0.65rem; color: var(--pink); letter-spacing: 2px; font-weight: 800; text-transform: uppercase; }
+        .product-name { font-size: 1.1rem; margin: 10px 0; font-weight: 600; height: 50px; overflow: hidden; color: #fff; }
+        .price { font-size: 1.5rem; font-weight: 300; margin-bottom: 20px; color: #fff; }
+        .buy-btn { 
+            background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); 
+            padding: 15px; width: 100%; cursor: pointer; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s;
+        }
+        .buy-btn:hover { background: white; color: black; border-color: white; }
 
         @media (max-width: 768px) {
             nav { flex-direction: column; height: auto; padding: 15px; }
             .search-container { margin: 15px 0; width: 100%; }
-            .hero-content h1 { font-size: 2rem; }
+            .hero-content h1 { font-size: 2.5rem; }
             body { padding-top: 160px; }
         }
     </style>
@@ -51,24 +99,23 @@
 
 <nav>
     <div class="logo-container" onclick="location.reload()">
-        <img src="logo.png" alt="Logo" class="nav-logo-img" onerror="this.src='https://cdn-icons-png.flaticon.com/512/2103/2103633.png'">
-        <div class="logo-text">Gamerz<span>CHORBAZAAR</span></div>
+        <div class="logo-text">GAMERZ <span>CHORBAZAAR</span></div>
     </div>
     <div class="search-container">
-        <input type="text" id="aiSearch" placeholder="Ask Narrow AI for Luxe Deals..." onkeyup="runAiSearch()">
+        <input type="text" id="aiSearch" placeholder="SEARCH GAMERZ ARMORY..." onkeyup="runAiSearch()">
     </div>
 </nav>
 
 <div class="hero-ad">
     <div class="hero-content">
-        <p>SPECIAL EDITION</p>
-        <h1>PREMIUM<br>Gamerz Choice  </h1>
-        <button class="buy-btn" style="width: auto; padding: 15px 40px; margin-top: 20px;">DISCOVER →</button>
+        <p>EQUIPMENT FOR PROFESSIONALS</p>
+        <h1>ELITE GAMING<br>GEAR ONLY</h1>
+        <button class="discover-btn">ENTER BAZAAR →</button>
     </div>
 </div>
 
 <div class="container" id="product-container">
-    <p style="grid-column: 1/-1; text-align:center;">Establishing Secure AI Connection...</p>
+    <p style="grid-column: 1/-1; text-align:center; opacity: 0.5; letter-spacing: 2px;">SYNCING GAMERZ DATABASE...</p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -81,12 +128,12 @@
 
     let masterList = [];
 
-    // NARROW AI LOGIC
     function getAiTag(name) {
         const n = name.toLowerCase();
-        if (n.includes('chair') || n.includes('seat')) return 'Ergonomic Luxe';
-        if (n.includes('phone') || n.includes('tech')) return 'Advanced Tech';
-        return 'Luxe Edition';
+        if (n.includes('chair') || n.includes('seat')) return 'Ergonomic Armor';
+        if (n.includes('mouse') || n.includes('key')) return 'Input Precision';
+        if (n.includes('phone') || n.includes('iphone')) return 'Mobile Rig';
+        return 'Gamerz Elite';
     }
 
     async function fetchMall() {
@@ -99,20 +146,20 @@
 
     function render(list) {
         const container = document.getElementById('product-container');
-        container.innerHTML = list.length ? '' : '<p style="grid-column:1/-1; text-align:center;">No Luxe items found.</p>';
+        container.innerHTML = list.length ? '' : '<p style="grid-column:1/-1; text-align:center;">Armory Empty.</p>';
 
         list.forEach(p => {
-            let img = p.image_url || 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800';
+            let img = p.image_url || 'https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=800';
             let link = (p.link && !p.link.startsWith('http')) ? 'https://' + p.link : p.link;
 
             container.innerHTML += `
                 <div class="card">
-                    <img src="${img}" onerror="this.src='https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=800'">
+                    <img src="${img}">
                     <div class="card-info">
                         <span class="ai-badge">${getAiTag(p.name)}</span>
-                        <h3 style="margin: 15px 0 5px 0; font-size: 1.1rem;">${p.name}</h3>
+                        <div class="product-name">${p.name}</div>
                         <div class="price">₹${Number(p.price).toLocaleString()}</div>
-                        <button class="buy-btn" onclick="window.open('${link}', '_blank')">VIEW DETAILS</button>
+                        <button class="buy-btn" onclick="window.open('${link}', '_blank')">UNBOX DEAL</button>
                     </div>
                 </div>
             `;
@@ -121,7 +168,7 @@
 
     function runAiSearch() {
         const query = document.getElementById('aiSearch').value.toLowerCase();
-        const filtered = masterList.filter(p => p.name.toLowerCase().includes(query) || getAiTag(p.name).toLowerCase().includes(query));
+        const filtered = masterList.filter(p => p.name.toLowerCase().includes(query));
         render(filtered);
     }
 
