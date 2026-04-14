@@ -3,123 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gamerz ChorBazaar | Pro-Gaming Luxe</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Gamerz ChorBazaar | Live Pro Mall</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --pink: #ff3f6c; --dark: #0a0a0b; --card-bg: #141416; }
-        
-        /* LIVE NEURAL BACKGROUND */
+        :root { --pink: #ff3f6c; --dark: #050505; --card: #111113; }
+
+        /* THE "ALWAYS LIVE" NEURAL BACKGROUND */
         body { 
-            font-family: 'Montserrat', sans-serif; 
-            margin: 0; 
-            padding-top: 80px; 
-            color: white; 
-            background: linear-gradient(125deg, #0a0a0b, #1a1a1d, #0d0d12, #0a0a0b);
-            background-size: 400% 400%;
-            animation: gradientBG 18s ease infinite;
+            margin: 0; padding-top: 80px; 
+            font-family: 'Montserrat', sans-serif;
+            color: white;
+            background: #050505; /* Fallback */
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 63, 108, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 63, 108, 0.08) 0%, transparent 40%),
+                linear-gradient(135deg, #050505 0%, #0f0f12 100%);
+            background-size: 200% 200%;
+            animation: pulseBackground 10s ease-in-out infinite;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes pulseBackground {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
         }
 
-        /* GAMERZ NAVIGATION */
+        /* LOGO & NAV */
         nav { 
             position: fixed; top: 0; width: 100%; height: 80px; 
-            background: rgba(10, 10, 11, 0.9); 
-            backdrop-filter: blur(20px); 
+            background: rgba(5, 5, 5, 0.9); backdrop-filter: blur(20px); 
             display: flex; align-items: center; justify-content: space-between; 
             padding: 0 5%; z-index: 1000; box-sizing: border-box;
-            border-bottom: 1px solid rgba(255, 63, 108, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .logo-container { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-        .logo-text { font-size: 1.3rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
-        .logo-text span { color: var(--pink); text-shadow: 0 0 10px rgba(255, 63, 108, 0.5); }
+        .logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 2px; cursor: pointer; }
+        .logo span { color: var(--pink); text-shadow: 0 0 15px var(--pink); }
 
-        /* PRO SEARCH BAR */
-        .search-container { flex-grow: 1; margin: 0 40px; max-width: 450px; }
+        /* SEARCH BAR */
+        .search-container { flex-grow: 1; margin: 0 40px; max-width: 400px; }
         #aiSearch { 
-            width: 100%; padding: 12px 25px; border-radius: 2px; 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            background: rgba(255, 255, 255, 0.03); color: white; 
-            outline: none; transition: 0.3s; font-size: 0.8rem;
-            letter-spacing: 1px;
+            width: 100%; padding: 12px 20px; border-radius: 2px; 
+            border: 1px solid #333; background: rgba(255,255,255,0.03); 
+            color: white; outline: none; transition: 0.3s;
         }
-        #aiSearch:focus { border-color: var(--pink); background: rgba(255, 255, 255, 0.07); box-shadow: 0 0 20px rgba(255, 63, 108, 0.1); }
+        #aiSearch:focus { border-color: var(--pink); box-shadow: 0 0 10px rgba(255,63,108,0.2); }
 
-        /* GAMERZ HERO SECTION */
-        .hero-ad { 
-            width: 100%; height: 70vh; 
-            background: linear-gradient(to right, rgba(10,10,11,0.9), transparent), 
-                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920'); 
-            background-size: cover; background-position: center; 
-            display: flex; align-items: center; padding-left: 8%;
+        /* HERO SECTION */
+        .hero { 
+            width: 100%; height: 60vh; 
+            background: linear-gradient(to right, #050505, transparent), 
+                        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1920');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; padding: 0 8%; box-sizing: border-box;
         }
-        .hero-content h1 { font-size: 4rem; font-weight: 800; margin: 10px 0; line-height: 1; letter-spacing: -3px; }
-        .hero-content p { color: var(--pink); font-weight: 600; letter-spacing: 5px; font-size: 0.75rem; text-transform: uppercase; }
-        .discover-btn { 
-            background: var(--pink); color: white; border: none; 
-            padding: 15px 45px; border-radius: 0px; font-weight: 700; cursor: pointer;
-            transition: 0.3s; margin-top: 25px; text-transform: uppercase; letter-spacing: 2px;
-        }
-        .discover-btn:hover { background: white; color: black; box-shadow: 0 0 25px var(--pink); }
+        .hero h1 { font-size: 3.5rem; margin: 0; line-height: 0.9; }
+        .hero p { color: var(--pink); letter-spacing: 5px; font-weight: 600; font-size: 0.8rem; }
 
         /* PRODUCT GRID */
-        .container { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 35px; padding: 60px 5%; max-width: 1400px; margin: 0 auto; }
+        .container { 
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 30px; padding: 50px 5%; max-width: 1400px; margin: 0 auto; 
+        }
         .card { 
-            background: var(--card-bg); border-radius: 0px; overflow: hidden; 
-            border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.4s; 
+            background: var(--card); border: 1px solid #222; 
+            transition: 0.4s; position: relative; overflow: hidden;
         }
-        .card:hover { transform: scale(1.02); border-color: var(--pink); box-shadow: 0 0 30px rgba(255, 63, 108, 0.2); }
-        .card img { width: 100%; height: 380px; object-fit: cover; filter: brightness(0.8); transition: 0.5s; }
-        .card:hover img { filter: brightness(1); }
-        
-        .card-info { padding: 25px; text-align: left; background: linear-gradient(to top, #000, transparent); }
-        .ai-badge { font-size: 0.65rem; color: var(--pink); letter-spacing: 2px; font-weight: 800; text-transform: uppercase; }
-        .product-name { font-size: 1.1rem; margin: 10px 0; font-weight: 600; height: 50px; overflow: hidden; color: #fff; }
-        .price { font-size: 1.5rem; font-weight: 300; margin-bottom: 20px; color: #fff; }
-        .buy-btn { 
-            background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); 
-            padding: 15px; width: 100%; cursor: pointer; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s;
+        .card:hover { transform: translateY(-5px); border-color: var(--pink); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .card img { width: 100%; height: 350px; object-fit: cover; opacity: 0.8; transition: 0.4s; }
+        .card:hover img { opacity: 1; transform: scale(1.05); }
+
+        .info { padding: 20px; }
+        .tag { font-size: 0.6rem; color: var(--pink); font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
+        .name { font-size: 1.1rem; margin: 10px 0; font-weight: 600; height: 45px; overflow: hidden; }
+        .price { font-size: 1.3rem; margin-bottom: 15px; }
+        .btn { 
+            background: transparent; color: white; border: 1px solid #444; 
+            padding: 12px; width: 100%; cursor: pointer; font-weight: 600; transition: 0.3s;
         }
-        .buy-btn:hover { background: white; color: black; border-color: white; }
+        .btn:hover { background: white; color: black; border-color: white; }
 
         @media (max-width: 768px) {
             nav { flex-direction: column; height: auto; padding: 15px; }
             .search-container { margin: 15px 0; width: 100%; }
-            .hero-content h1 { font-size: 2.5rem; }
-            body { padding-top: 160px; }
+            body { padding-top: 150px; }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <div class="logo-container" onclick="location.reload()">
-        <div class="logo-text">GAMERZ <span>CHORBAZAAR</span></div>
-    </div>
+    <div class="logo" onclick="location.reload()">GAMERZ <span>CHORBAZAAR</span></div>
     <div class="search-container">
-        <input type="text" id="aiSearch" placeholder="SEARCH GAMERZ ARMORY..." onkeyup="runAiSearch()">
+        <input type="text" id="aiSearch" placeholder="SEARCH ARMORY..." onkeyup="runAiSearch()">
     </div>
 </nav>
 
-<div class="hero-ad">
-    <div class="hero-content">
-        <p>EQUIPMENT FOR PROFESSIONALS</p>
-        <h1>ELITE GAMING<br>GEAR ONLY</h1>
-        <button class="discover-btn">ENTER BAZAAR →</button>
+<div class="hero">
+    <div>
+        <p>ELITE GEAR ONLY</p>
+        <h1>PRO-GRADE<br>SELECTION</h1>
+        <button class="btn" style="width:auto; padding: 15px 40px; margin-top: 25px;">DISCOVER →</button>
     </div>
 </div>
 
 <div class="container" id="product-container">
-    <p style="grid-column: 1/-1; text-align:center; opacity: 0.5; letter-spacing: 2px;">SYNCING GAMERZ DATABASE...</p>
+    <p style="grid-column:1/-1; text-align:center; opacity:0.5;">Connecting to Gamerz Database...</p>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
     const _supabase = supabase.createClient(
         'https://nmwxwfswxeidccbntoxg.supabase.co', 
@@ -128,16 +121,8 @@
 
     let masterList = [];
 
-    function getAiTag(name) {
-        const n = name.toLowerCase();
-        if (n.includes('chair') || n.includes('seat')) return 'Ergonomic Armor';
-        if (n.includes('mouse') || n.includes('key')) return 'Input Precision';
-        if (n.includes('phone') || n.includes('iphone')) return 'Mobile Rig';
-        return 'Gamerz Elite';
-    }
-
     async function fetchMall() {
-        const { data, error } = await _supabase.from('products').select('*');
+        const { data } = await _supabase.from('products').select('*');
         if (data) {
             masterList = data;
             render(masterList);
@@ -146,30 +131,25 @@
 
     function render(list) {
         const container = document.getElementById('product-container');
-        container.innerHTML = list.length ? '' : '<p style="grid-column:1/-1; text-align:center;">Armory Empty.</p>';
-
+        container.innerHTML = '';
         list.forEach(p => {
             let img = p.image_url || 'https://images.unsplash.com/photo-1593305841991-05c297ba4575?q=80&w=800';
-            let link = (p.link && !p.link.startsWith('http')) ? 'https://' + p.link : p.link;
-
             container.innerHTML += `
                 <div class="card">
                     <img src="${img}">
-                    <div class="card-info">
-                        <span class="ai-badge">${getAiTag(p.name)}</span>
-                        <div class="product-name">${p.name}</div>
+                    <div class="info">
+                        <span class="tag">Gamerz Edition</span>
+                        <div class="name">${p.name}</div>
                         <div class="price">₹${Number(p.price).toLocaleString()}</div>
-                        <button class="buy-btn" onclick="window.open('${link}', '_blank')">UNBOX DEAL</button>
+                        <button class="btn" onclick="window.open('${p.link}', '_blank')">UNBOX DEAL</button>
                     </div>
-                </div>
-            `;
+                </div>`;
         });
     }
 
     function runAiSearch() {
         const query = document.getElementById('aiSearch').value.toLowerCase();
-        const filtered = masterList.filter(p => p.name.toLowerCase().includes(query));
-        render(filtered);
+        render(masterList.filter(p => p.name.toLowerCase().includes(query)));
     }
 
     fetchMall();
